@@ -63,11 +63,11 @@ class LionelTrainButtonBase(ButtonEntity):
 class LionelTrainConnectButton(LionelTrainButtonBase):
     """Button for connecting from the train."""
 
-    _attr_name = "Disconnect"
+    _attr_name = "Connect"
     _attr_icon = "mdi:bluetooth-on"
 
     def __init__(self, coordinator: LionelTrainCoordinator, device_name: str) -> None:
-        """Initialize the conneconnect button."""
+        """Initialize the connect button."""
         super().__init__(coordinator, device_name)
         self._attr_unique_id = f"{coordinator.mac_address}_connect"
 
