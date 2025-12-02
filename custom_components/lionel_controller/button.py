@@ -73,7 +73,7 @@ class LionelTrainConnectButton(LionelTrainButtonBase):
 
     async def async_press(self) -> None:
         """Press the button."""
-        await self._coordinator.async_connect()
+        await self._coordinator.async_force_reconnect()
 
     @property
     def available(self) -> bool:
