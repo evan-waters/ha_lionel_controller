@@ -64,7 +64,7 @@ class LionelTrainConnectButton(LionelTrainButtonBase):
     """Button for connecting from the train."""
 
     _attr_name = "Connect"
-    _attr_icon = "mdi:bluetooth-on"
+    _attr_icon = "mdi:bluetooth"
 
     def __init__(self, coordinator: LionelTrainCoordinator, device_name: str) -> None:
         """Initialize the connect button."""
