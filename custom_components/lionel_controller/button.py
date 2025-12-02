@@ -25,6 +25,7 @@ async def async_setup_entry(
     name = config_entry.data[CONF_NAME]
     
     buttons = [
+        LionelTrainConnectButton(coordinator, name),
         LionelTrainDisconnectButton(coordinator, name),
         LionelTrainStopButton(coordinator, name),
         LionelTrainForwardButton(coordinator, name),
@@ -58,6 +59,26 @@ class LionelTrainButtonBase(ButtonEntity):
     def available(self) -> bool:
         """Return True if entity is available."""
         return self._coordinator.connected
+
+class LionelTrainConnectButton(LionelTrainButtonBase):
+    """Button for connecting from the train."""
+
+    _attr_name = "Disconnect"
+    _attr_icon = "mdi:bluetooth-on"
+
+    def __init__(self, coordinator: LionelTrainCoordinator, device_name: str) -> None:
+        """Initialize the conneconnect button."""
+        super().__init__(coordinator, device_name)
+        self._attr_unique_id = f"{coordinator.mac_address}_connect"
+
+    async def async_press(self) -> None:
+        """Press the button."""
+        await self._coordinator.async_force_reconnect()
+
+    @property
+    def available(self) -> bool:
+        """Return True always."""
+        return True
 
 
 class LionelTrainDisconnectButton(LionelTrainButtonBase):
